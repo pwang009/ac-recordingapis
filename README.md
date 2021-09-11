@@ -29,21 +29,25 @@ Ensure you are in the root folder
 ##### SAM Invoke:
 `sam local invoke "CADCallRecordingsControlLambdaFunction" -t template.yaml -e events/resume.json --env-vars events/env.json` 
 
-Note:
+### Note:
 Validate the Amazon Connect instance name is like xxxxx.my.connect.aws.  If it is like awsapps.com, you can ignore the following required change.  
 
 If you’re NOT running the Amazon Connect instance in the us-east-1 region and domain name is like my.connect.aws, it is required to change agentRecording.html file from line 191 to 195.  Change awsapps.com to my.connect.aws, like below 
 
-from: 
+#### From: 
+```
 var loginURL = `https://${instanceAlias}.awsapps.com/connect/login`;
 var logoutURL = `https://${instanceAlias}.awsapps.com/connect/logout`;
 var instanceHome = `https://${instanceAlias}.awsapps.com/connect/home`;
 var ccpURL = `https://${instanceAlias}.awsapps.com/connect/ccp-v2`;
 var agentMetricsURL = `https://${instanceAlias}.awsapps.com/connect/real-time-metrics?tableType=user`;
+```
 
-to:
+#### To:
+```
 var loginURL = `https://${instanceAlias}.my.connect.aws/connect/login`;
 var logoutURL = `https://${instanceAlias}.my.connect.aws/connect/logout`;
 var instanceHome = `https://${instanceAlias}.my.connect.aws/connect/home`;
 var ccpURL = `https://${instanceAlias}.my.connect.aws/connect/ccp-v2`;
 var agentMetricsURL = `https://${instanceAlias}.my.connect.aws/connect/real-time-metrics?tableType=user`;
+```
